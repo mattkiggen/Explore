@@ -2,12 +2,10 @@ package com.dotmatt.explore.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
@@ -30,18 +28,22 @@ fun BottomNav(navController: NavController) {
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
 
-    Row(horizontalArrangement = Arrangement.SpaceAround, modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp)
-    ) {
-        NavItem(Icons.Rounded.Home,"Home", (currentRoute == Routes.Home.name)) {
-            navController.navigate(Routes.Home.name)
-        }
-        NavItem(Icons.Rounded.LocationOn,"Map", (currentRoute == Routes.Map.name)) {
-            navController.navigate(Routes.Map.name)
-        }
-        NavItem(Icons.Rounded.Settings,"Settings", (currentRoute == Routes.Settings.name)) {
-            navController.navigate(Routes.Settings.name)
+    Surface(elevation = 8.dp) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            NavItem(Icons.Rounded.Home,"Home", (currentRoute == Routes.Home.name)) {
+                navController.navigate(Routes.Home.name)
+            }
+            NavItem(Icons.Rounded.LocationOn,"Map", (currentRoute == Routes.Map.name)) {
+                navController.navigate(Routes.Map.name)
+            }
+            NavItem(Icons.Rounded.Settings,"Settings", (currentRoute == Routes.Settings.name)) {
+                navController.navigate(Routes.Settings.name)
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 package com.dotmatt.explore.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -14,6 +16,7 @@ import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,25 +53,23 @@ fun BottomNav(navController: NavController) {
 
 @Composable
 fun NavItem(icon: ImageVector, label: String, isSelected: Boolean, onClick: () -> Unit) {
-    if (isSelected) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .background(Color(0xFFF2F2F2), shape = RoundedCornerShape(50))
-                .padding(vertical = 8.dp, horizontal = 16.dp)
-                .clickable { onClick() }
-        ) {
-            Icon(icon, label, tint = Color.Black)
+    val backgroundColor = if (isSelected) Color(0xFFF2F2F2) else Color.Transparent
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .clickable(
+                interactionSource = MutableInteractionSource(),
+                indication = null,
+                onClick = onClick
+            )
+            .background(backgroundColor, shape = RoundedCornerShape(50))
+            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .clip(RoundedCornerShape(50))
+    ) {
+        Icon(icon, label, tint = Color.Black)
+        AnimatedVisibility(visible = isSelected) {
             Text(label, color = Color.Black, modifier = Modifier.padding(start = 8.dp))
-        }
-    } else {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .padding(8.dp)
-                .clickable { onClick() }
-        ) {
-            Icon(icon, label, tint = Color.Black)
         }
     }
 }

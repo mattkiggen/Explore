@@ -1,9 +1,11 @@
 package com.dotmatt.explore
 
-import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,7 +15,6 @@ import com.dotmatt.explore.pages.HomePage
 import com.dotmatt.explore.pages.MapPage
 import com.dotmatt.explore.pages.SettingsPage
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun App() {
     val navController = rememberNavController()
@@ -21,11 +22,13 @@ fun App() {
     Scaffold(
         topBar = { Text("Explore") },
         bottomBar = { BottomNav(navController) }
-    ) {
-        NavHost(navController = navController, startDestination = Routes.Home.name) {
-            composable(Routes.Home.name) { HomePage() }
-            composable(Routes.Map.name) { MapPage() }
-            composable(Routes.Settings.name) { SettingsPage() }
+    ) { padding ->
+        Box(modifier = Modifier.padding(padding)) {
+            NavHost(navController = navController, startDestination = Routes.Home.name) {
+                composable(Routes.Home.name) { HomePage() }
+                composable(Routes.Map.name) { MapPage() }
+                composable(Routes.Settings.name) { SettingsPage() }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.dotmatt.explore
 
+import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import com.dotmatt.explore.pages.HomePage
 import com.dotmatt.explore.pages.MapPage
 import com.dotmatt.explore.pages.SettingsPage
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun App() {
     val navController = rememberNavController()

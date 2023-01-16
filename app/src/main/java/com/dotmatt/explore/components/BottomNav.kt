@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.dotmatt.explore.Routes
+import com.dotmatt.explore.ui.theme.Colors
 
 @Composable
 fun BottomNav(navController: NavController) {
@@ -53,7 +54,7 @@ fun BottomNav(navController: NavController) {
 
 @Composable
 fun NavItem(icon: ImageVector, label: String, isSelected: Boolean, onClick: () -> Unit) {
-    val backgroundColor = if (isSelected) Color(0xFFF2F2F2) else Color.Transparent
+    val backgroundColor = if (isSelected) Colors.BackgroundColor else Color.Transparent
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -67,9 +68,9 @@ fun NavItem(icon: ImageVector, label: String, isSelected: Boolean, onClick: () -
             .padding(vertical = 8.dp, horizontal = 16.dp)
             .clip(RoundedCornerShape(50))
     ) {
-        Icon(icon, label, tint = Color.Black)
+        Icon(icon, label, tint = Colors.DarkText)
         AnimatedVisibility(visible = isSelected) {
-            Text(label, color = Color.Black, modifier = Modifier.padding(start = 8.dp))
+            Text(label, color = Colors.DarkText, modifier = Modifier.padding(start = 8.dp))
         }
     }
 }

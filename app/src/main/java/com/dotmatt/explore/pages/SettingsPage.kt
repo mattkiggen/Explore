@@ -1,11 +1,12 @@
 package com.dotmatt.explore.pages
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.Checkbox
+import androidx.compose.material.Switch
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -19,7 +20,7 @@ fun SettingsPage() {
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 48.dp)
         )
-        Text("UNIT OF MEASUREMENT", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+        Text("UNIT OF MEASUREMENT", fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -28,8 +29,7 @@ fun SettingsPage() {
             Text("Metric")
             Switch(checked = false, onCheckedChange = {})
         }
-        Divider(thickness = 1.dp, color = Color(0xFFF2F2F2), modifier = Modifier.padding(vertical = 24.dp))
-        Text("PREFERRED LANDMARKS", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+        Text("PREFERRED LANDMARKS", fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 24.dp, bottom = 8.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
